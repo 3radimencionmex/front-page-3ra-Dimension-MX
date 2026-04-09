@@ -1,0 +1,356 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────────────────────── */
+@theme {
+  /* Colors */
+  --color-base:          #000000;
+  --color-surface:       #060A06;
+  --color-surface-2:     #0C140C;
+  --color-border:        #162016;
+  --color-border-bright: #2A4A2A;
+  --color-text:          #FFFFFF;
+  --color-muted:         #6B7B6B;
+
+  /* Primary — Neon Green */
+  --color-accent:        #00FF41;
+  --color-accent-dim:    rgba(0, 255, 65, 0.12);
+  --color-accent-glow:   rgba(0, 255, 65, 0.30);
+
+  /* Secondary — Electric Cyan */
+  --color-cyan:          #00E5FF;
+  --color-cyan-dim:      rgba(0, 229, 255, 0.12);
+
+  /* Tertiary — Amber */
+  --color-amber:         #FFB800;
+  --color-amber-dim:     rgba(255, 184, 0, 0.12);
+
+  /* Error */
+  --color-error:         #FF3B3B;
+  --color-error-dim:     rgba(255, 59, 59, 0.12);
+
+  /* Typography */
+  --font-mono: var(--font-geist-mono), 'Courier New', monospace;
+  --font-sans: var(--font-space-grotesk), 'Arial', sans-serif;
+
+  --font-size-hero: clamp(2.5rem, 8vw, 7rem);
+  --font-size-xl:   clamp(1.5rem, 3vw, 2.5rem);
+  --font-size-lg:   clamp(1rem, 2vw, 1.5rem);
+
+  /* Spacing (4px base grid) */
+  --spacing-1:  4px;
+  --spacing-2:  8px;
+  --spacing-3:  12px;
+  --spacing-4:  16px;
+  --spacing-6:  24px;
+  --spacing-8:  32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+}
+
+/* ─── Global Reset & Base ────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--color-base);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-display: optional;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ─── Reusable Patterns ──────────────────────────────────────────────────── */
+
+/* Dot Matrix Background — tinted green */
+.dot-matrix {
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 255, 65, 0.07) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+/* Scanline Overlay */
+.scanline {
+  position: relative;
+}
+
+.scanline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glitch Animation — green / cyan RGB split */
+@keyframes glitch-1 {
+  0%   { clip-path: inset(40% 0 61% 0); transform: translate(-4px, 0); }
+  20%  { clip-path: inset(92% 0 1% 0);  transform: translate(4px, 0); }
+  40%  { clip-path: inset(43% 0 1% 0);  transform: translate(-4px, 0); }
+  60%  { clip-path: inset(25% 0 58% 0); transform: translate(4px, 0); }
+  80%  { clip-path: inset(54% 0 7% 0);  transform: translate(-4px, 0); }
+  100% { clip-path: inset(58% 0 43% 0); transform: translate(0, 0); }
+}
+
+@keyframes glitch-2 {
+  0%   { clip-path: inset(25% 0 58% 0); transform: translate(4px, 0);  color: #00FF41; }
+  20%  { clip-path: inset(54% 0 7% 0);  transform: translate(-4px, 0); color: #00E5FF; }
+  40%  { clip-path: inset(58% 0 43% 0); transform: translate(4px, 0);  color: #00FF41; }
+  60%  { clip-path: inset(40% 0 61% 0); transform: translate(-4px, 0); color: #FFB800; }
+  80%  { clip-path: inset(92% 0 1% 0);  transform: translate(4px, 0);  color: #00FF41; }
+  100% { clip-path: inset(43% 0 1% 0);  transform: translate(0, 0);    color: #00E5FF; }
+}
+
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: var(--color-base);
+}
+
+.glitch::before {
+  animation: glitch-1 2.5s infinite linear alternate-reverse;
+  color: #00FF41;
+  left: 2px;
+}
+
+.glitch::after {
+  animation: glitch-2 2.5s infinite linear alternate-reverse;
+  color: #00E5FF;
+  left: -2px;
+}
+
+/* Nothing-style Button */
+.nothing-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-6);
+  background: transparent;
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+
+.nothing-btn:hover {
+  background: var(--color-text);
+  color: var(--color-base);
+}
+
+.nothing-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Accent green button */
+.nothing-btn--accent {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.nothing-btn--accent:hover {
+  background: var(--color-accent);
+  color: var(--color-base);
+  box-shadow: 0 0 24px var(--color-accent-glow);
+}
+
+/* Cyan button */
+.nothing-btn--cyan {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+}
+
+.nothing-btn--cyan:hover {
+  background: var(--color-cyan);
+  color: var(--color-base);
+  box-shadow: 0 0 24px var(--color-cyan-dim);
+}
+
+/* ─── Typography Utilities ───────────────────────────────────────────────── */
+.text-mono {
+  font-family: var(--font-mono);
+}
+
+.text-hero {
+  font-size: var(--font-size-hero);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+/* ─── Section Layout ─────────────────────────────────────────────────────── */
+.section {
+  padding: var(--spacing-24) var(--spacing-6);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-4);
+}
+
+.section-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-6);
+  line-height: 1.1;
+}
+
+/* ─── Card Pattern ───────────────────────────────────────────────────────── */
+.card {
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-6);
+  background: var(--color-surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 20px var(--color-accent-dim);
+}
+
+/* ─── Form Elements ──────────────────────────────────────────────────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.field-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  padding: var(--spacing-3) 0;
+  transition: border-color 0.2s ease;
+  outline: none;
+  width: 100%;
+}
+
+.field-input::placeholder {
+  color: var(--color-muted);
+}
+
+.field-input:focus {
+  border-bottom-color: var(--color-accent);
+}
+
+.field-input.error {
+  border-bottom-color: var(--color-error);
+}
+
+.field-error {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-error);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-bright);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-base);
+}
+
+/* ─── Focus ring ─────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 1px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ─── Slicer Mode ────────────────────────────────────────────────────────── */
+.slicer-mode {
+  --font-sans: var(--font-mono);
+  --color-base: #010401;
+  --color-surface: #020802;
+  --color-accent: #00FF00;
+  --color-accent-glow: rgba(0, 255, 0, 0.4);
+  --color-cyan: #00FF00; /* Force dual colors to green */
+}
+
+.slicer-mode::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 9997; /* Below cursor */
+}
+
+/* Make images look like slicing previews */
+.slicer-mode img {
+  filter: sepia(100%) hue-rotate(70deg) saturate(500%) contrast(150%);
+  border: 1px solid var(--color-accent);
+}
+
+.slicer-mode .glitch::before,
+.slicer-mode .glitch::after {
+  color: #00FF00;
+}
