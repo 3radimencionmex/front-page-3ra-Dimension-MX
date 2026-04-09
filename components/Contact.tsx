@@ -113,7 +113,7 @@ export default function Contact() {
 
           {/* WhatsApp CTA */}
           <a
-            href="https://wa.me/525500000000?text=Hola%2C%20me%20interesa%20cotizar%20un%20proyecto%20de%20impresi%C3%B3n%203D"
+            href="https://wa.me/5215571909397?text=Hola%21%20%F0%9F%91%8B%20Me%20interesa%20cotizar%20un%20proyecto%20de%20impresi%C3%B3n%203D%20con%203ra%20Dimensi%C3%B3n%20MX."
             target="_blank"
             rel="noopener noreferrer"
             className="nothing-btn nothing-btn--accent"
@@ -367,8 +367,13 @@ export default function Contact() {
           color: "var(--color-muted)",
         }}
       >
-        <span>© 2025 3radimension Mexico. Todos los derechos reservados.</span>
-        <span>Donde el diseño se vuelve tangible.</span>
+        <span>© 2026 3radimension Mexico. Todos los derechos reservados.</span>
+        <div style={{ display: "flex", gap: "20px", alignItems: "center", flexWrap: "wrap" }}>
+          <a href="https://www.instagram.com/3radimension_mx?igsh=bW10N3dqdXM2NW8w" target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-muted)", textDecoration: "none", fontFamily: "var(--font-mono)", fontSize: "0.7rem", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget.style.color = "var(--color-accent)")} onMouseLeave={e => (e.currentTarget.style.color = "var(--color-muted)")}>[ Instagram ]</a>
+          <a href="https://www.tiktok.com/@3radimensionmx?_r=1&_t=ZS-95PC8i8CgmW" target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-muted)", textDecoration: "none", fontFamily: "var(--font-mono)", fontSize: "0.7rem", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget.style.color = "var(--color-accent)")} onMouseLeave={e => (e.currentTarget.style.color = "var(--color-muted)")}>[ TikTok ]</a>
+          <a href="https://www.facebook.com/share/16gAExFHmX/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-muted)", textDecoration: "none", fontFamily: "var(--font-mono)", fontSize: "0.7rem", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget.style.color = "var(--color-accent)")} onMouseLeave={e => (e.currentTarget.style.color = "var(--color-muted)")}>[ Facebook ]</a>
+          <a href="https://wa.me/5215571909397" target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-muted)", textDecoration: "none", fontFamily: "var(--font-mono)", fontSize: "0.7rem", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget.style.color = "var(--color-accent)")} onMouseLeave={e => (e.currentTarget.style.color = "var(--color-muted)")}>[ WhatsApp ]</a>
+        </div>
       </div>
 
       <style>{`

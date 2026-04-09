@@ -28,7 +28,7 @@ export default function StickyWhatsApp() {
       }}
     >
       <a
-        href="https://wa.me/525500000000?text=Hola%2C%20me%20interesa%20cotizar%20un%20proyecto%20de%20impresi%C3%B3n%203D"
+        href="https://wa.me/5215571909397?text=Hola%21%20%F0%9F%91%8B%20Me%20interesa%20cotizar%20un%20proyecto%20de%20impresi%C3%B3n%203D%20con%203ra%20Dimensi%C3%B3n%20MX."
         target="_blank"
         rel="noopener noreferrer"
         className="nothing-btn nothing-btn--accent"

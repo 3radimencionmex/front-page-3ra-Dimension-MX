@@ -114,7 +114,7 @@ export default function VolumeCalculator() {
   if (vol > 1500) complexity = "Medio";
   if (vol > 8000) complexity = "Complejo";
 
-  const phone = "525500000000";
+  const phone = "5215571909397";
 
   return (
     <section style={{ padding: "96px 24px", background: "var(--color-surface)", borderTop: "1px solid var(--color-border)" }} id="calculator">
