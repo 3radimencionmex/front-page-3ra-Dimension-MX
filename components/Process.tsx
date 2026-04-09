@@ -35,7 +35,7 @@ const steps: Step[] = [
     label: "IMPRESIÓN",
     title: "Impresión",
     description:
-      "Fabricación controlada con monitoreo en tiempo real. FDM o resina según especificaciones.",
+      "Fabricación controlada con monitoreo automático en tiempo real. Alta velocidad con detección de fallos y calibración automática.",
   },
   {
     number: "04",

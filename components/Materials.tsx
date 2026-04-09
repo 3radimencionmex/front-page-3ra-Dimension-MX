@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type FilterType = "Todos" | "FDM" | "Resina";
+type FilterType = "Todos" | "Estándar" | "Ingeniería";
 
 interface Material {
   name: string;
@@ -10,7 +10,7 @@ interface Material {
   maxTemp: string;
   idealUse: string;
   available: boolean;
-  type: "FDM" | "Resina";
+  type: "Estándar" | "Ingeniería";
 }
 
 const materials: Material[] = [
@@ -20,31 +20,7 @@ const materials: Material[] = [
     maxTemp: "60°C",
     idealUse: "Prototipos visuales, modelos de exhibición",
     available: true,
-    type: "FDM",
-  },
-  {
-    name: "ABS",
-    hardness: "Rígido / Resistente",
-    maxTemp: "100°C",
-    idealUse: "Piezas mecánicas, carcasas técnicas",
-    available: true,
-    type: "FDM",
-  },
-  {
-    name: "PETG",
-    hardness: "Semi-flexible",
-    maxTemp: "80°C",
-    idealUse: "Piezas funcionales, contenedores",
-    available: true,
-    type: "FDM",
-  },
-  {
-    name: "TPU",
-    hardness: "Flexible",
-    maxTemp: "90°C",
-    idealUse: "Juntas, amortiguadores, calzado",
-    available: true,
-    type: "FDM",
+    type: "Estándar",
   },
   {
     name: "PLA+ Silk",
@@ -52,27 +28,59 @@ const materials: Material[] = [
     maxTemp: "60°C",
     idealUse: "Decoración, arte, productos de lujo",
     available: true,
-    type: "FDM",
+    type: "Estándar",
   },
   {
-    name: "Resina Standard",
-    hardness: "Rígido / Frágil",
-    maxTemp: "45°C",
-    idealUse: "Modelos de detalle, figuras, miniaturas",
+    name: "PETG",
+    hardness: "Semi-flexible",
+    maxTemp: "80°C",
+    idealUse: "Piezas funcionales, contenedores",
     available: true,
-    type: "Resina",
+    type: "Estándar",
   },
   {
-    name: "Resina Casteable",
-    hardness: "Quemable",
-    maxTemp: "—",
-    idealUse: "Joyería, cera perdida, odontología",
+    name: "TPU",
+    hardness: "Flexible",
+    maxTemp: "90°C",
+    idealUse: "Juntas, amortiguadores, calzado",
     available: true,
-    type: "Resina",
+    type: "Estándar",
+  },
+  {
+    name: "ABS",
+    hardness: "Rígido / Resistente",
+    maxTemp: "100°C",
+    idealUse: "Carcasas técnicas, piezas mecánicas",
+    available: true,
+    type: "Ingeniería",
+  },
+  {
+    name: "ASA",
+    hardness: "Rígido / UV Resistente",
+    maxTemp: "95°C",
+    idealUse: "Piezas de exterior, automoción",
+    available: true,
+    type: "Ingeniería",
+  },
+  {
+    name: "PA (Nylon)",
+    hardness: "Semi-rígido / Durable",
+    maxTemp: "120°C",
+    idealUse: "Piezas de alta resistencia, engranajes",
+    available: true,
+    type: "Ingeniería",
+  },
+  {
+    name: "PLA-CF",
+    hardness: "Rígido / Ligero",
+    maxTemp: "65°C",
+    idealUse: "Piezas estructurales ligeras, drones",
+    available: true,
+    type: "Ingeniería",
   },
 ];
 
-const FILTERS: FilterType[] = ["Todos", "FDM", "Resina"];
+const FILTERS: FilterType[] = ["Todos", "Estándar", "Ingeniería"];
 
 export default function Materials() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("Todos");
@@ -123,18 +131,18 @@ export default function Materials() {
                   padding: "8px 20px",
                   background:
                     activeFilter === f
-                      ? f === "FDM"
+                      ? f === "Estándar"
                         ? "var(--color-accent)"
-                        : f === "Resina"
+                        : f === "Ingeniería"
                         ? "var(--color-cyan)"
                         : "var(--color-text)"
                       : "var(--color-surface)",
                   color:
                     activeFilter === f ? "var(--color-base)" : "var(--color-muted)",
                   boxShadow:
-                    activeFilter === f && f === "FDM"
+                    activeFilter === f && f === "Estándar"
                       ? "0 0 12px var(--color-accent-glow)"
-                      : activeFilter === f && f === "Resina"
+                      : activeFilter === f && f === "Ingeniería"
                       ? "0 0 12px var(--color-cyan-dim)"
                       : "none",
                   border: "none",
@@ -209,7 +217,7 @@ export default function Materials() {
                         width: "8px",
                         height: "8px",
                         background:
-                          mat.type === "FDM"
+                          mat.type === "Estándar"
                             ? "var(--color-accent)"
                             : "var(--color-cyan)",
                         marginRight: "10px",
@@ -271,7 +279,7 @@ export default function Materials() {
                 verticalAlign: "middle",
               }}
             />
-            FDM
+            Estándar
           </span>
           <span>
             <span
@@ -284,7 +292,7 @@ export default function Materials() {
                 verticalAlign: "middle",
               }}
             />
-            Resina
+            Ingeniería
           </span>
         </div>
       </div>

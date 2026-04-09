@@ -17,19 +17,19 @@ const services: Service[] = [
   {
     glyph: "[///]",
     label: "FDM",
-    title: "Impresión FDM",
+    title: "Impresión FDM de Alta Velocidad",
     description:
-      "Fabricación por deposición fundida. Ideal para prototipos funcionales, piezas estructurales y producción en serie. Materiales: PLA, ABS, PETG, TPU.",
+      "Fabricación de precisión con tecnología CoreXY de última generación. Alta velocidad, cámara cerrada y monitoreo automático. Ideal para prototipos funcionales, piezas estructurales y producción en serie.",
     glyphColor: "var(--color-accent)",
     linkColor: "var(--color-accent)",
     glowColor: "var(--color-accent-glow)",
   },
   {
-    glyph: "[~~~]",
-    label: "SLA / MSLA",
-    title: "Resina SLA/MSLA",
+    glyph: "[◈◈◈]",
+    label: "MULTI-MATERIAL",
+    title: "Multi-Color / Multi-Material",
     description:
-      "Fotopolimerización UV de alta resolución. Perfecta para modelos de detalle fino, joyería, odontología y masters para moldes.",
+      "Impresión con sistema AMS: hasta 4 materiales simultáneos en una sola pieza. Gradientes de color, piezas bicolor, soportes solubles y combinaciones de materiales rígidos y flexibles.",
     glyphColor: "var(--color-cyan)",
     linkColor: "var(--color-cyan)",
     glowColor: "var(--color-cyan-dim)",
@@ -221,7 +221,7 @@ export default function Services() {
           background: var(--color-surface-2) !important;
         }
         .service-card--fdm:hover       { box-shadow: inset 0 0 0 1px var(--color-accent), 0 0 28px var(--color-accent-dim); }
-        .service-card--sla-msla:hover  { box-shadow: inset 0 0 0 1px var(--color-cyan),   0 0 28px var(--color-cyan-dim); }
+        .service-card--multi-material:hover { box-shadow: inset 0 0 0 1px var(--color-cyan),   0 0 28px var(--color-cyan-dim); }
         .service-card--diseño:hover    { box-shadow: inset 0 0 0 1px var(--color-amber),  0 0 28px var(--color-amber-dim); }
         .service-card--rápido:hover    { box-shadow: inset 0 0 0 1px var(--color-accent), 0 0 28px var(--color-accent-dim); }
       `}</style>
