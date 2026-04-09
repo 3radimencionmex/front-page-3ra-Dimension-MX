@@ -18,6 +18,7 @@ export default function Cursor() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+    const safeCtx = ctx;
 
     let width = window.innerWidth;
     let height = window.innerHeight;
@@ -59,7 +60,7 @@ export default function Cursor() {
       }
 
       // Draw particles on canvas
-      ctx.clearRect(0, 0, width, height);
+      safeCtx.clearRect(0, 0, width, height);
       
       const dx = pos.current.x - lastPos.current.x;
       const dy = pos.current.y - lastPos.current.y;
@@ -87,10 +88,10 @@ export default function Cursor() {
         if (p.life <= 0) {
           particles.current.splice(i, 1);
         } else {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, Math.max(0.5, p.life * 2), 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(0, 255, 65, ${p.life})`;
-          ctx.fill();
+          safeCtx.beginPath();
+          safeCtx.arc(p.x, p.y, Math.max(0.5, p.life * 2), 0, Math.PI * 2);
+          safeCtx.fillStyle = `rgba(0, 255, 65, ${p.life})`;
+          safeCtx.fill();
         }
       }
 
